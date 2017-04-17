@@ -1,0 +1,14 @@
+{%extends '::base.html.twig' %}
+
+
+{% block body %}
+  <div class="jumbotron ">
+    <div class="">
+      <h1>Bienvenue sur BonoBook !</h1>
+      <p>Le premier réseau social des bonobos</p>
+    </div>
+    <div class="">
+      <p><a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}"> {{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</a></p>
+    </div>
+  </div>
+{% endblock %}

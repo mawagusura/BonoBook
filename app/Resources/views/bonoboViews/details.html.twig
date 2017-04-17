@@ -1,0 +1,41 @@
+{%extends '::base.html.twig' %}
+
+{% block body %}
+  <div class="page-header">
+    <h1>Vous êtes sur la page de <strong>{{user.username}}</strong></h1>
+  </div>
+  <div class="container-fluid">
+      <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Nom d'utilisateur :</strong> </h3>
+    </div>
+    <div class="panel-body">
+      {{ user.username }}
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Age :</strong> </h3>
+    </div>
+    <div class="panel-body">
+      {{ user.age }}
+    </div>
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Famille :</strong> </h3>
+    </div>
+    <div class="panel-body">
+      {{ user.family }}
+    </div>
+
+  </div>
+
+  </div>
+  <div class="text-center btn-group-justified col-lg-2">
+    <a href="{{ path('all') }}" class="btn btn-default">Revenir à la liste</a>
+    {% if user not in app.user.getMyFriends %}
+      <a href="{{ path('add', { 'id': user.id }) }}" class="btn btn-success">Ajouter</a>
+    {% else %}
+      <a href="{{ path('remove', { 'id': user.id }) }}" class="btn btn-danger">Supprimer de vos amis</a>
+    {% endif %}
+  </div>
+{% endblock %}

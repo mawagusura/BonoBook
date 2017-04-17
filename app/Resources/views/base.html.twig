@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}BonoBook{% endblock %}</title>
+        {% block stylesheets %}
+          <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+        {% endblock %}
+
+    </head>
+    <body>
+
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="{{path('homepage')}}">BonoBook</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                  <ul class="nav navbar-nav">
+                    <li><a href="{{path('all')}}">Rechercher</a></li>
+                    <li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a href = "{{ path('fos_user_profile_show') }}">Mon profil
+                        </a>
+                    {% endif %}
+                    </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <p class="navbar-text"> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                        </p>
+                      {% else %}
+                       <a href="{{ path('fos_user_registration_register') }}"> {{ 'registration.submit'|trans({}, 'FOSUserBundle') }}
+                       </a>
+                      {% endif %}
+                    </li>
+                    <li><a
+                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+
+                           href="{{ path('fos_user_security_logout') }}">
+                              {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+
+                      {% else %}
+                          href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+
+                      {% endif %}
+                      </a>
+                    </li>
+
+
+
+
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+        <div class="container">
+
+              {% block body %}
+                {% block fos_user_content %}{% endblock %}
+              {% endblock %}
+
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

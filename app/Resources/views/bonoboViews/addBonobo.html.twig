@@ -1,0 +1,9 @@
+{%extends '::base.html.twig' %}
+
+{% block body %}
+  <div class="well text-center">
+    <div class="alert alert-dismissible alert-success ">L'utilisateur <strong>{{friend.username}} </strong> a été ajouté à votre liste d'amis !</div>
+    <a href="{{ path('details', { 'id': friend.id }) }}" class="btn btn-primary">Consulter son profil</a>
+    <a href="{{ path('all') }}" class="btn btn-default">Revenir à la liste</a>
+  </div>
+{% endblock %}

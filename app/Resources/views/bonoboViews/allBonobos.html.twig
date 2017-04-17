@@ -1,0 +1,44 @@
+{%extends '::base.html.twig' %}
+
+
+{% block body %}
+<div class="page-header text-center">
+  <h1>La liste complète des Bonobos</h1>
+</div>
+
+  <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for bonob in allB %}
+    <tr>
+      <td>{{bonob.id}} </td>
+      <td>{{bonob.name}}</td>
+      <td>{{bonob.age}}</td>
+      <td>
+        <a href="{{ path('details', { 'id': bonob.id }) }}" class="btn btn-info">Infos</a>
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          {% if bonob in app.user.getMyFriends %}
+            <a href="#" class="btn btn-warning">Modifier</a>
+            <a href="{{ path('remove', { 'id': bonob.id }) }}" class="btn btn-danger">Supprimer</a>
+          {% else %}
+            {% if not (bonob==app.user) %}
+              <a href="{{ path('add', { 'id': bonob.id }) }}" class="btn btn-success">Ajouter</a>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
