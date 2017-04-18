@@ -18,15 +18,20 @@
     <div class="panel-body">
       {{ user.email }}
     </div>
+
     <div class="panel-heading">
-      <h3 class="panel-title"><strong>{{ 'profile.show.password'|trans }}: </strong></h3>
+      <h3 class="panel-title"><strong>Age :</strong> </h3>
     </div>
     <div class="panel-body">
-      {{ user.password }}
+      {{ user.age }}
     </div>
-  </div>
 
-
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Famille :</strong> </h3>
+    </div>
+    <div class="panel-body">
+      {{ user.family }}
+    </div>
 
   <div class=" text-center">
       <a href="{{path('fos_user_profile_edit')}}" class="btn btn-success btn-lg">Modifier mes informations</a>

@@ -60,11 +60,13 @@ class BonoboController extends Controller
         if ($user == $this->getUser()){
             return $this->redirectToRoute('fos_user_profile_show');
         }
-        else {
+        else if($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->render('bonoboViews/details.html.twig', array(
                 'user' =>$user
                 ));
         }
+        else throw new AccessDeniedException('This user does not have access to this section.');
+
     }
 
     /**

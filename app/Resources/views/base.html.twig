@@ -40,11 +40,8 @@
                     </li>
                     <li><a
                       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-
                            href="{{ path('fos_user_security_logout') }}">
                               {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-
                       {% else %}
                           href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}
 
